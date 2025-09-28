@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Happy Birthday Pallavi 🎉</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, "Segoe UI", Arial, sans-serif;background:#0f0f12;color:#fff}
+    .wrap{height:100%;width:100%;position:relative;overflow:hidden}
+    .slide{
+      position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+      text-align:center;padding:28px;background-size:cover;background-position:center;transition:opacity .45s,transform .45s;
+      opacity:0;pointer-events:none;transform:scale(.99)
+    }
+    .slide.active{opacity:1;pointer-events:auto;transform:scale(1)}
+    .overlay{position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.26),rgba(0,0,0,.36));pointer-events:none}
+    h1{font-size:clamp(20px,4vw,44px);margin:10px 0;text-shadow:0 8px 30px rgba(0,0,0,.45)}
+    p{font-size:clamp(14px,2vw,18px);margin:8px auto;max-width:920px;line-height:1.45;color:rgba(255,255,255,0.95)}
+    button{cursor:pointer;border:none;padding:12px 22px;border-radius:999px;font-weight:700}
+    .btn-primary{background:linear-gradient(90deg,#ff6aa3,#ffb3d6);color:#fff;box-shadow:0 14px 40px rgba(255,90,160,0.12)}
+    .btn-ghost{background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.06)}
+    input,textarea{width:380px;max-width:92%;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:#fff}
+    textarea{height:120px;resize:none;padding-top:12px}
+
+    /* backgrounds */
+    .bg1{background:linear-gradient(120deg,#3a1c71,#d76d77,#ffaf7b)}
+    .bg2{background:url('https://images.unsplash.com/photo-1604014237800-1a2b775cdbc1?q=80&w=1400&auto=format&fit=crop') center/cover}
+    .bg3{background:url('https://raw.githubusercontent.com/Adarsh-rexi/boss.img/main/boss%20-%20Copy.jpg') center/cover} /* full photo */
+    .bg5{background:url('https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=1400&auto=format&fit=crop') center/cover}
+    .bg6{background:url('https://images.unsplash.com/photo-1602319694443-70c8efb72593?q=80&w=1400&auto=format&fit=crop') center/cover}
+    .bg7{background:url('https://images.unsplash.com/photo-1617042375875-4c6afae7b5e4?q=80&w=1400&auto=format&fit=crop') center/cover}
+    .bg8{background:linear-gradient(180deg,#ffe4ec,#ffd6eb)}
+
+    /* balloons */
+    .balloon{position:absolute;bottom:-200px;font-size:36px;opacity:0;animation:rise linear forwards}
+    @keyframes rise{from{transform:translateY(0) rotate(0);opacity:1} to{transform:translateY(-130vh) rotate(360deg);opacity:0}}
+    .flyingText{position:absolute;bottom:-100px;font-weight:900;font-size:clamp(22px,5vw,42px);animation:rise linear forwards}
+
+    @media (max-width:520px){
+      input,textarea{width:92%}
+      h1{font-size:clamp(18px,6vw,36px)}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- Slide 1 -->
+    <section id="s1" class="slide bg1 active">
+      <div class="overlay"></div>
+      <h1>Enter Password 🔐</h1>
+      <input id="passwordInput" type="password" placeholder="Enter password">
+      <button class="btn-primary" onclick="checkPassword()">Unlock</button>
+      <div id="wrongMsg" style="margin-top:12px;color:#ffccd9;font-weight:700"></div>
+      <p style="margin-top:12px;font-size:14px;opacity:0.8">💡 Hint: jis naam se mera number tumhare phone me save hai wahi password hai</p>
+    </section>
+
+    <!-- Slide 2 -->
+    <section id="s2" class="slide bg2">
+      <div class="overlay"></div>
+      <h1>Boss — Ek Surprise Hai 🎁</h1>
+      <button class="btn-primary" onclick="go(3)">Click karke dekho 🎁</button>
+    </section>
+
+    <!-- Slide 3 (merged with 4) -->
+    <section id="s3" class="slide bg3">
+      <div class="overlay"></div>
+      <div style="font-weight:900;font-size:clamp(28px,8vw,110px);letter-spacing:2px;text-shadow:0 8px 30px rgba(0,0,0,.45);">
+        🎉 HAPPY BIRTHDAY <br> PALLAVI 🎂
+      </div>
+      <p style="margin-top:16px;font-size:18px;max-width:800px;">
+        🎂 4 October — Tumhara din hai, cake, wishes aur pyar bhare pal 💖
+      </p>
+      <button class="btn-primary" onclick="go(4)">Next ➜</button>
+    </section>
+
+    <!-- Slide 4 -->
+    <section id="s4" class="slide bg5">
+      <div class="overlay"></div>
+      <h1>Boss, Tumhare Liye Ek Zaruri Message Hai... ✨</h1>
+      <p>Yes — padho 💌 | No — abhi nahi 🚫 | Skip — baad me ➜</p>
+      <div style="margin-top:18px">
+        <button class="btn-primary" onclick="handleChoice('yes')">Yes</button>
+        <button class="btn-ghost" onclick="handleChoice('no')">No</button>
+        <button class="btn-ghost" onclick="handleChoice('skip')">Skip</button>
+      </div>
+      <div id="choiceResult" style="margin-top:18px;font-size:16px;"></div>
+    </section>
+
+    <!-- Slide 5 (heartfelt) -->
+    <section id="s5" class="slide bg6">
+      <div class="overlay"></div>
+      <h1>😔 Pallavi, ek baat suno...</h1>
+      <p>Jo hua us waqt galat tha, uske liye sorry. Tum bahut miss hoti ho. I hope ek din tum unblock karke phir se baat karogi. 💖</p>
+      <button class="btn-primary" onclick="go(6)">Reply — Write to him</button>
+    </section>
+
+    <!-- Slide 6 -->
+    <section id="s6" class="slide bg7">
+      <div class="overlay"></div>
+      <h1>💬 Reply likho</h1>
+      <textarea id="replyText" placeholder="Type your reply..."></textarea>
+      <button class="btn-primary" onclick="sendReply()">Send Reply 💌</button>
+      <div id="replyStatus"></div>
+    </section>
+
+    <!-- Slide 7 -->
+    <section id="s7" class="slide bg6">
+      <div class="overlay"></div>
+      <h1>📩 Tumhara reply mil gaya</h1>
+      <p>
+        Abhi jo tumne reply kiya hai wo mil gaya hai.  
+        Agar tumhe kuch aur bolna ho mujhse to yaha pe aa kar bol sakti ho,  
+        lekin mai reply nahi kar paunga.  
+      </p>
+      <button class="btn-primary" onclick="go(8)">Next ➜</button>
+    </section>
+
+    <!-- Slide 8 -->
+    <section id="s8" class="slide bg5">
+      <div class="overlay"></div>
+      <h1>💭 Ek baat aur...</h1>
+      <p>
+        Ye sab jo hai na padhi ka hi hai, kyunki tumhara last msg bhi wahi tha na  
+        “padho to padh rahe”… ab aisa mat sochna ki tum ab msg na hi kro.  
+      </p>
+      <button class="btn-primary" onclick="go(9)">Next ➜</button>
+    </section>
+
+    <!-- Slide 9 -->
+    <section id="s9" class="slide bg3">
+      <div class="overlay"></div>
+      <h1>💖 Dil se...</h1>
+      <p>
+        Bahut miss kar raha hoon Pallavi.  
+        Aur ye bhi pata hai tum bhi karti hogi.  
+        Lekin agar karti ho to msg karna yrr...  
+        I hope tum mera msg padhogi.  
+        Agar acha laga to party de do 🥳  
+        aur agar nahi laga to sorry sorry 🙏
+      </p>
+      <button class="btn-primary" onclick="go(10)">Next ➜</button>
+    </section>
+
+    <!-- Slide 10: Celebration -->
+    <section id="s10" class="slide" style="background:linear-gradient(180deg,#ffe6f0,#ffd9ec);">
+      <div class="overlay"></div>
+      <h1>🎈 Once Again — Happy Birthday Pallavi 🎈</h1>
+      <button class="btn-primary" onclick="launchBalloons()">Click Here — Celebrate 🎉</button>
+    </section>
+
+    <!-- balloon container -->
+    <div id="balloonContainer"></div>
+  </div>
+
+<script>
+const PASSWORD = "Boss";
+function show(idx){const slides=document.querySelectorAll('.slide');slides.forEach(s=>s.classList.remove('active'));slides[idx].classList.add('active');}
+function go(n){show(n-1);}
+function checkPassword(){const v=document.getElementById('passwordInput').value.trim();if(v===PASSWORD){show(1);}else{document.getElementById('wrongMsg').textContent="Wrong password";}}
+
+function handleChoice(choice){
+  if(choice==='yes'){show(4);} 
+  else{show(5);}
+}
+
+/* send reply */
+async function sendReply(){
+  const txt=document.getElementById('replyText').value.trim();
+  const status=document.getElementById('replyStatus');
+  if(!txt){alert("Please type a reply.");return;}
+  status.textContent="Sending...";
+  try{
+    const res=await fetch("http://localhost:3000/send",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({message:txt})});
+    const text=await res.text();let j={};try{j=JSON.parse(text);}catch(e){}
+    if(j&&j.success){status.textContent="✅ Sent!";setTimeout(()=>show(6),1000);}else{status.textContent="❌ Failed";}
+  }catch(e){status.textContent="⚠️ Network error";}
+}
+
+/* Balloons + Happy Birthday text */
+function launchBalloons(){
+  const container=document.getElementById('balloonContainer');
+  const emojis=['🎈','🎂','🎉','🎊','💖'];
+  const colors=['#ff4d6d','#4dff88','#ffd54d','#4dc4ff','#ff8c4d'];
+  for(let i=0;i<40;i++){
+    const d=document.createElement('div');
+    d.className='balloon';
+    d.style.left=(Math.random()*90)+'vw';
+    d.style.fontSize=(28+Math.random()*36)+'px';
+    d.style.animationDuration=(6+Math.random()*8)+'s';
+    d.textContent=emojis[Math.floor(Math.random()*emojis.length)];
+    container.appendChild(d);
+    setTimeout(()=>d.remove(),16000);
+  }
+  const t=document.createElement('div');
+  t.className='flyingText';
+  t.style.left=(Math.random()*70)+'vw';
+  t.style.color=colors[Math.floor(Math.random()*colors.length)];
+  t.style.animationDuration=(7+Math.random()*6)+'s';
+  t.textContent="🎉 HAPPY BIRTHDAY PALLAVI 🎉";
+  container.appendChild(t);
+  setTimeout(()=>t.remove(),16000);
+}
+</script>
+</body>
+</html>
